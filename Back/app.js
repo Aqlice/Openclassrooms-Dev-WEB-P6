@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user');
+const bodyParser = require('body-parser');
 
 mongoose.connect('mongodb+srv://Aqlice:jKa55WLwQSOGWoOo@cluster0.yvh8m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/auth', userRoutes);
+app.use(bodyParser.json())
+app.use('api/auth', userRoutes);
 
 module.exports = app
